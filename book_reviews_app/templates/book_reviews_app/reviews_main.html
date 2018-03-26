@@ -1,0 +1,32 @@
+{% extends "book_reviews_app/layout.html" %}
+
+{% block head %}
+{{ block.super }}
+{% endblock head %}
+{% block title %}{{ block.super }} | Reviews{% endblock title %}
+
+{% block content %}
+<header>
+    <h1>Welcome, {{ request.session.first_name }}</h1>
+    <a href="/books/add">Add Book and Review</a>
+    <a href="/logoff">logoff</a>
+</header>
+<main>
+    <br><h2>Recent Book Reviews</h2><br>
+    <div class="recent-reviews">
+        {% for review in reviews %}
+            <a href="/books/{{ review.book.id }}">{{ review.book.title }}</a>
+            <p>Rating: {{ review.rating }}</p>
+            <p><span><a href="/users/{{ review.user.id }}">{{ review.user.alias }}</a></span> says: {{ review.content }}</p>
+            <p>Posted on: {{ review.created_at }}</p><br>
+        {% endfor %}
+    </div>
+    <br><h2>Other Books with Reviews</h2>
+    <div class="other-reviews">
+        {% for book in books %}
+            <a href="/books/{{ book.id }}">{{ book.title }}</a>
+        {% endfor %}
+    </div>
+</main>
+
+{% endblock content %}
