@@ -16,6 +16,7 @@ def prepare_requirements():
     os.system("pip freeze --local > requirements.txt")
     os.system("echo 'django-extenstions' >> requirements.txt")
     os.system("echo 'gunicorn' >> requirements.txt")
+    os.system("git add . && git commit -m 'added requirements.txt'")
     print("Finished Building 'requirements.txt'\n")
 
 
